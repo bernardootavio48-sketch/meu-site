@@ -1,5 +1,5 @@
 from flask import Flask, render_template
- import os # Importe o módulo os
+import os # Importe o módulo os
 app = Flask(__name__)
 
 # Rota principal (Página Inicial)
