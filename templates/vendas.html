@@ -7,9 +7,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
-    <meta name="description" content="TAVINN TI - Montagem de computadores Gamer e de Escritório, formatação e assistência técnica especializada.">
-    <meta name="keywords" content="pc gamer, assistência técnica, formatação, computador barato, setup gamer">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        /* Ajuste para as imagens ficarem bonitas no card */
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; /* Corta a imagem para caber sem esticar */
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        .promo-text { font-size: 0.85rem; color: #dc3545; font-weight: bold; }
+    </style>
 </head>
 <body>
 
@@ -24,44 +34,118 @@
     </nav>
 
     <main class="container py-5">
-        <h2 class="section-title mb-4">MÁQUINAS GAMER</h2>
+        
+        <h2 class="section-title mb-4" data-aos="fade-right"><i class="fas fa-gamepad me-2"></i>PC GAMER</h2>
         <div class="row g-4 mb-5">
             {% for pc in gamers %}
-            <div class="col-md-4">
-                <div class="product-card">
-                    <div class="badge-tag {{ pc.badge_class }}">{{ pc.badge }}</div>
-                    <h3>{{ pc.nome }}</h3>
-                    <ul class="specs-list">
-                        {% for spec in pc.specs %}
-                        <li><i class="{{ spec.icon }}"></i> {{ spec.item }}</li>
-                        {% endfor %}
-                    </ul>
-                    <div class="price-tag">{{ pc.preco }}</div>
-                    <a href="https://wa.me/5567999584289?text={{ pc.msg_zap }}" class="btn-buy" target="_blank">Comprar</a>
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="product-card p-0"> <img src="{{ url_for('static', filename='img/' + pc.img) }}" class="card-img-top" alt="{{ pc.nome }}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Foto'">
+                    
+                    <div class="p-4">
+                        <div class="badge-tag {{ pc.badge_class }}">{{ pc.badge }}</div>
+                        <h3>{{ pc.nome }}</h3>
+                        <ul class="specs-list">
+                            {% for spec in pc.specs %}
+                            <li><i class="{{ spec.icon }}"></i> {{ spec.item }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="price-tag">{{ pc.preco }}</div>
+                        <a href="https://wa.me/5567999584289?text={{ pc.msg_zap }}" class="btn-buy" target="_blank">Comprar</a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
 
-        <h2 class="section-title mb-4">ESCRITÓRIO</h2>
-        <div class="row g-4">
+        <h2 class="section-title mb-4" data-aos="fade-right"><i class="fas fa-desktop me-2"></i>COMPUTADORES DE MESA</h2>
+        <div class="row g-4 mb-5">
             {% for pc in office %}
-            <div class="col-md-6">
-                <div class="product-card">
-                    <div class="badge-tag {{ pc.badge_class }}">{{ pc.badge }}</div>
-                    <h3>{{ pc.nome }}</h3>
-                    <ul class="specs-list">
-                        {% for spec in pc.specs %}
-                        <li><i class="{{ spec.icon }}"></i> {{ spec.item }}</li>
-                        {% endfor %}
-                    </ul>
-                    <div class="price-tag">{{ pc.preco }}</div>
-                    <a href="https://wa.me/5567999584289?text={{ pc.msg_zap }}" class="btn-buy btn-office" target="_blank">Garantir</a>
+            <div class="col-md-6" data-aos="fade-up">
+                <div class="product-card p-0">
+                    <img src="{{ url_for('static', filename='img/' + pc.img) }}" class="card-img-top" alt="{{ pc.nome }}" onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Foto'">
+                    <div class="p-4">
+                        <div class="badge-tag {{ pc.badge_class }}">{{ pc.badge }}</div>
+                        <h3>{{ pc.nome }}</h3>
+                        <ul class="specs-list">
+                            {% for spec in pc.specs %}
+                            <li><i class="{{ spec.icon }}"></i> {{ spec.item }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="price-tag">{{ pc.preco }}</div>
+                        <a href="https://wa.me/5567999584289?text={{ pc.msg_zap }}" class="btn-buy btn-office" target="_blank">Garantir</a>
+                    </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+
+        <h2 class="section-title mb-4" data-aos="fade-right"><i class="fas fa-tv me-2"></i>MONITORES</h2>
+        <div class="row g-4 mb-5">
+            {% for item in monitores %}
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="product-card p-0">
+                    <img src="{{ url_for('static', filename='img/' + item.img) }}" class="card-img-top" alt="{{ item.nome }}" onerror="this.src='https://via.placeholder.com/400x300?text=Monitor'">
+                    <div class="p-4">
+                        <h4>{{ item.nome }}</h4>
+                        <p class="text-muted small">{{ item.desc }}</p>
+                        <div class="price-tag">{{ item.preco }}</div>
+                        <a href="https://wa.me/5567999584289?text={{ item.msg_zap }}" class="btn btn-outline-primary w-100">Ver Detalhes</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="section-title mb-4" data-aos="fade-right"><i class="fas fa-keyboard me-2"></i>PERIFÉRICOS & KITS</h2>
+        <div class="row g-4 mb-5">
+            {% for item in perifericos %}
+            <div class="col-md-3" data-aos="fade-up">
+                <div class="product-card p-0 h-100">
+                    <img src="{{ url_for('static', filename='img/' + item.img) }}" class="card-img-top" style="height: 200px;" alt="{{ item.nome }}" onerror="this.src='https://via.placeholder.com/400x300?text=Kit+Gamer'">
+                    <div class="p-3 d-flex flex-column h-100">
+                        <h5>{{ item.nome }}</h5>
+                        <p class="small flex-grow-1">{{ item.desc }}</p>
+                        
+                        {% if item.promo %}
+                        <div class="promo-text mb-2"><i class="fas fa-tag"></i> {{ item.promo }}</div>
+                        {% endif %}
+                        
+                        <div class="price-tag fs-4 my-0">{{ item.preco }}</div>
+                        <a href="https://wa.me/5567999584289?text={{ item.msg_zap }}" class="btn btn-primary mt-3 btn-sm">Comprar</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h2 class="section-title mb-4" data-aos="fade-right"><i class="fas fa-video me-2"></i>SEGURANÇA INTELIGENTE</h2>
+        <div class="row g-4">
+            {% for item in seguranca %}
+            <div class="col-md-6" data-aos="flip-up">
+                <div class="product-card p-0">
+                    <div class="row g-0">
+                        <div class="col-md-5">
+                            <img src="{{ url_for('static', filename='img/' + item.img) }}" class="img-fluid rounded-start h-100 object-fit-cover" style="min-height: 250px;" alt="..." onerror="this.src='https://via.placeholder.com/400x300?text=Camera'">
+                        </div>
+                        <div class="col-md-7">
+                            <div class="p-4 d-flex flex-column justify-content-center h-100">
+                                <h3>{{ item.nome }}</h3>
+                                <p class="card-text">{{ item.desc }}</p>
+                                <p class="promo-text">{{ item.promo }}</p>
+                                <div class="price-tag text-start">{{ item.preco }}</div>
+                                <a href="https://wa.me/5567999584289?text={{ item.msg_zap }}" class="btn btn-dark">Consultar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
     </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script> AOS.init(); </script>
 
 </body>
 </html>
