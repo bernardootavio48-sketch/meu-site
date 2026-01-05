@@ -1,70 +1,107 @@
 :root {
-    --primary: #007bff;
-    --dark: #0f172a;
+    /* Cores Fixas (Não mudam) */
+    --primary: #ff6000;
     --green: #25d366;
-    --orange: #f59e0b;
+    
+    /* Cores do Modo Escuro (Padrão) */
+    --bg-body: #121212;
+    --bg-card: #1f1f1f;
+    --bg-nav: #000000;
+    --text-main: #ffffff;
+    --text-muted: #cccccc;
+    --border-color: #333333;
 }
 
-body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
-
-.navbar { background: var(--dark); }
-
-.hero-section {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200');
-    background-size: cover;
-    padding: 100px 0;
+/* Cores do Modo Claro (Quando a classe .light-mode estiver ativa) */
+.light-mode {
+    --bg-body: #f4f6f9;
+    --bg-card: #ffffff;
+    --bg-nav: #212529;
+    --text-main: #212529;
+    --text-muted: #666666;
+    --border-color: #e0e0e0;
 }
 
-.section-title {
-    border-left: 5px solid var(--primary);
-    padding-left: 15px;
-    font-weight: 700;
+/* APLICAÇÃO DAS VARIÁVEIS */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+}
+
+.navbar {
+    background: var(--bg-nav);
+    border-bottom: 3px solid var(--primary);
 }
 
 .product-card {
-    background: white;
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: 0.3s;
-    height: 100%;
+    overflow: hidden;
 }
 
-.product-card:hover { transform: translateY(-5px); }
+/* Textos dentro dos cards */
+.product-card h3, .product-card h4, .product-card h5 {
+    color: var(--text-main);
+    font-weight: bold;
+    margin-top: 15px;
+}
 
-.specs-list { list-style: none; padding: 0; margin: 20px 0; }
-.specs-list li { margin-bottom: 10px; font-size: 0.9rem; }
+.specs-list li { margin-bottom: 8px; font-size: 0.85rem; color: var(--text-muted); }
+
+/* Restante do CSS (Botões, Hero, etc...) mantém igual */
+.hero-section {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), var(--bg-body)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200');
+    background-size: cover;
+    padding: 100px 0;
+}
+.section-title { border-left: 5px solid var(--primary); padding-left: 15px; font-weight: 700; color: var(--text-main); text-transform: uppercase; }
+.specs-list { list-style: none; padding: 0; margin: 15px 0; }
 .specs-list i { color: var(--primary); width: 25px; }
+.price-tag { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin: 15px 0; }
+.btn-buy { background: var(--green); color: white; text-decoration: none; display: block; text-align: center; padding: 10px; border-radius: 5px; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
+.btn-buy:hover { filter: brightness(1.1); color: white; }
+.btn-office { background: #007bff; }
+.badge-tag { position: absolute; top: 10px; right: 10px; padding: 5px 10px; background: var(--primary); color: white; border-radius: 3px; font-size: 0.7rem; font-weight: bold; z-index: 2; }
+.promo-text { color: var(--primary); font-weight: bold; font-size: 0.9rem;}
+/* --- ADICIONAR NO FINAL DO ARQUIVO --- */
 
-.price-tag {
-    font-size: 2rem;
-    font-weight: 800;
-    margin: 20px 0;
-    color: var(--dark);
+/* Rolagem Suave Global */
+html {
+    scroll-behavior: smooth;
 }
 
-.btn-buy {
-    background: var(--green);
-    color: white;
+/* Barra Rápida Sticky */
+.barra-rapida {
+    position: sticky;
+    top: 0; /* Cola no topo da página */
+    z-index: 1020; /* Fica acima de outros elementos */
+    background-color: var(--bg-card); /* Usa a cor do card (muda no modo escuro) */
+    border-bottom: 2px solid var(--primary);
+    padding: 15px 0;
+}
+
+.barra-rapida a {
     text-decoration: none;
-    display: block;
-    text-align: center;
-    padding: 12px;
-    border-radius: 12px;
-    font-weight: 700;
+    color: var(--text-main);
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 20px;
     transition: 0.3s;
 }
 
-.btn-office { background: var(--orange); }
-
-.badge-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    background: var(--primary);
+.barra-rapida a:hover {
+    background-color: var(--primary);
     color: white;
-    border-radius: 5px;
-    font-size: 0.7rem;
-    margin-bottom: 10px;
 }
 
-.footer { background: var(--dark); }
+/* Espaçamento para o link não ficar escondido pela barra */
+.detalhe-produto {
+    scroll-margin-top: 80px; /* Compensa a altura da barra sticky */
+    padding-top: 20px;
+    margin-bottom: 60px;
+}

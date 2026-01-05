@@ -40,6 +40,61 @@
             </div>
         </div>
     </header>
+    <section class="container py-5">
+        <h2 class="section-title mb-4 text-white" data-aos="fade-right">DESTAQUES DA SEMANA</h2>
+        
+        <div id="carouselDestaques" class="carousel slide rounded-4 overflow-hidden shadow-lg" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                
+                <div class="carousel-item active" data-bs-interval="3000">
+                    <div class="row g-0 bg-dark align-items-center">
+                        <div class="col-md-6">
+                            <img src="{{ url_for('static', filename='img/pc-gamer-elite.png') }}" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="PC Gamer">
+                        </div>
+                        <div class="col-md-6 p-5 text-white">
+                            <h3>PC Gamer Elite Aquário</h3>
+                            <p>A melhor performance para seus jogos. Equipado com i7 e RX 580.</p>
+                            <a href="{{ url_for('ver_produto', id_produto='g1') }}" class="btn btn-primary mt-3">Ver Especificações</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-bs-interval="3000">
+                    <div class="row g-0 bg-dark align-items-center">
+                        <div class="col-md-6">
+                            <img src="{{ url_for('static', filename='img/kit-evolut.png') }}" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Kit Evolut">
+                        </div>
+                        <div class="col-md-6 p-5 text-white">
+                            <h3>Kit Gamer Evolut White</h3>
+                            <p>Setup completo e estiloso. Teclado, Mouse e Headset Branco.</p>
+                            <a href="{{ url_for('ver_produto', id_produto='p2') }}" class="btn btn-primary mt-3">Ver Especificações</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item" data-bs-interval="3000">
+                    <div class="row g-0 bg-dark align-items-center">
+                        <div class="col-md-6">
+                            <img src="{{ url_for('static', filename='img/camera-dupla.png') }}" class="d-block w-100 object-fit-cover" style="height: 400px;" alt="Câmera">
+                        </div>
+                        <div class="col-md-6 p-5 text-white">
+                            <h3>Segurança Inteligente</h3>
+                            <p>Monitore sua casa pelo celular com visão noturna e lente dupla.</p>
+                            <a href="{{ url_for('ver_produto', id_produto='s1') }}" class="btn btn-primary mt-3">Ver Especificações</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestaques" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselDestaques" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
