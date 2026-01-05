@@ -10,7 +10,7 @@ gamers = [
     {
         "id": "g1",
         "nome": "PC Gamer Elite Aquário",
-        "img": "pc-gamer-elite.png",  # Ajustei para .png conforme seus uploads
+        "img": "pc-gamer-elite.png",
         "badge": "Lançamento",
         "badge_class": "bg-success",
         "specs": [
@@ -19,6 +19,7 @@ gamers = [
             {"icon": "fas fa-memory", "item": "16GB RAM Dual Channel"},
             {"icon": "fas fa-fan", "item": "Gabinete Aquário + 5 Fans RGB"}
         ],
+        "desc_longa": "Domine seus jogos favoritos com o PC Gamer Elite. Equipado com processador i7 e placa de vídeo dedicada, ele oferece desempenho fluido em Full HD. O gabinete aquário garante um visual incrível para o seu setup.",
         "preco": "R$ 2.800,00",
         "preco_num": 2800.00,
         "msg_zap": "Tenho interesse no PC Gamer Elite i7 com RX580"
@@ -38,6 +39,7 @@ office = [
             {"icon": "fas fa-hdd", "item": "SSD 240GB (Ultra Rápido)"},
             {"icon": "fab fa-windows", "item": "Windows 11 Pro Instalado"}
         ],
+        "desc_longa": "Ideal para escritórios e home office. A velocidade do SSD combinada com o processador i5 garante que você não perca tempo abrindo programas.",
         "preco": "R$ 850,00",
         "preco_num": 850.00,
         "msg_zap": "Tenho interesse no Desktop Pro-Work de R$ 850"
@@ -163,18 +165,24 @@ def buscar_produto(id_produto):
 
 @app.route('/')
 def index():
-    # Passamos os posts para a página inicial
     return render_template('index.html', posts=posts_insta)
 
 @app.route('/vendas')
 def vendas():
-    # Passamos TODAS as listas para a página de vendas
     return render_template('vendas.html', 
                          gamers=gamers, 
                          office=office, 
                          monitores=monitores, 
                          perifericos=perifericos,
                          seguranca=seguranca)
+
+# ESTA ROTA FOI ADICIONADA/CORRIGIDA PARA EVITAR O ERRO 500
+@app.route('/produto/<id_produto>')
+def ver_produto(id_produto):
+    prod = buscar_produto(id_produto)
+    if not prod:
+        return redirect(url_for('vendas'))
+    return render_template('produto.html', produto=prod)
 
 @app.route('/assistencia')
 def assistencia():

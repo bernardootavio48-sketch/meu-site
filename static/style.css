@@ -1,5 +1,5 @@
 :root {
-    /* Cores Fixas (Não mudam) */
+    /* Cores Fixas */
     --primary: #ff6000;
     --green: #25d366;
     
@@ -12,7 +12,6 @@
     --border-color: #333333;
 }
 
-/* Cores do Modo Claro (Quando a classe .light-mode estiver ativa) */
 .light-mode {
     --bg-body: #f4f6f9;
     --bg-card: #ffffff;
@@ -22,12 +21,12 @@
     --border-color: #e0e0e0;
 }
 
-/* APLICAÇÃO DAS VARIÁVEIS */
+/* GERAL */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-body);
     color: var(--text-main);
-    transition: background-color 0.3s, color 0.3s; /* Transição suave */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .navbar {
@@ -44,7 +43,6 @@ body {
     overflow: hidden;
 }
 
-/* Textos dentro dos cards */
 .product-card h3, .product-card h4, .product-card h5 {
     color: var(--text-main);
     font-weight: bold;
@@ -53,7 +51,6 @@ body {
 
 .specs-list li { margin-bottom: 8px; font-size: 0.85rem; color: var(--text-muted); }
 
-/* Restante do CSS (Botões, Hero, etc...) mantém igual */
 .hero-section {
     background: linear-gradient(to bottom, rgba(0,0,0,0.5), var(--bg-body)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200');
     background-size: cover;
@@ -68,19 +65,19 @@ body {
 .btn-office { background: #007bff; }
 .badge-tag { position: absolute; top: 10px; right: 10px; padding: 5px 10px; background: var(--primary); color: white; border-radius: 3px; font-size: 0.7rem; font-weight: bold; z-index: 2; }
 .promo-text { color: var(--primary); font-weight: bold; font-size: 0.9rem;}
-/* --- ADICIONAR NO FINAL DO ARQUIVO --- */
+.card-img-top { width: 100%; height: 250px; object-fit: cover; border-top-left-radius: 20px; border-top-right-radius: 20px; }
 
-/* Rolagem Suave Global */
+/* --- NOVO: BARRA STICKY E ROLAGEM SUAVE --- */
+
 html {
     scroll-behavior: smooth;
 }
 
-/* Barra Rápida Sticky */
 .barra-rapida {
     position: sticky;
-    top: 0; /* Cola no topo da página */
-    z-index: 1020; /* Fica acima de outros elementos */
-    background-color: var(--bg-card); /* Usa a cor do card (muda no modo escuro) */
+    top: 0;
+    z-index: 1020;
+    background-color: var(--bg-card);
     border-bottom: 2px solid var(--primary);
     padding: 15px 0;
 }
@@ -99,9 +96,8 @@ html {
     color: white;
 }
 
-/* Espaçamento para o link não ficar escondido pela barra */
 .detalhe-produto {
-    scroll-margin-top: 80px; /* Compensa a altura da barra sticky */
+    scroll-margin-top: 80px; 
     padding-top: 20px;
     margin-bottom: 60px;
 }
